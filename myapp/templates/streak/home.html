@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}My Streak{% endblock %}
+
+{% block content %}
+<div class="streak-dashboard">
+    <h2>Welcome, {{ user.username }}!</h2>
+    <div class="streak-count">
+        <h3>Current Streak: {{ streak.current_streak }} days</h3>
+        <p>Last activity: {{ streak.last_activity_date }}</p>
+    </div>
+    <form method="post" action="{% url 'update_streak' %}">
+        {% csrf_token %}
+        <button type="submit" class="streak-button">Log Today's Activity</button>
+    </form>
+</div>
+
+<style>
+    .streak-dashboard {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .streak-count {
+        margin: 2rem 0;
+        font-size: 1.2rem;
+    }
+    .streak-button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
